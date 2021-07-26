@@ -1,0 +1,35 @@
+@import '~bootstrap';
+
+.Login {
+    &__title {
+        color: #333333;
+    }
+
+    
+    &__form__error {
+        @extend .text-danger;
+        margin-left: 50px;
+    }
+
+    &__intro-image {
+        max-height: 600px;
+        max-width: 90%;
+      }
+
+    &__submit-btn,
+    &__submit-btn:active,
+    &__submit-btn:focus {
+        @extend .btn;
+        @extend .btn-dark;
+        @extend .w-100;
+        background: #f54555;
+        border-color: black;
+      }
+
+    &__register-link {
+        color: #f54555;; 
+    }
+    &__register-link:hover {
+        color: #0a1eff; 
+      }
+}

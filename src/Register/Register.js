@@ -8,21 +8,25 @@ export default function Register(props) {
 
     const history = useHistory();
 
-    function submit(values) {
-        fetch('http://localhost:4000/user', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-        }).then(res=> {
-            if(res.status === 201){
-                history.push('/login');
-                return;
-            }
+    async function submit(values) {
+        try {
+            const res = await fetch('http://localhost:4000/user', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(values)
+            });
+                if(res.status === 201){
+                    history.push('/login');
+                    return;
+                }
+        }
+        catch(err) {
             console.log('failure!');
-        });
-    }
+        };
+    };
+        
     return (
         <div className="Register d-flex justify-content-center">
             <div className="col col-lg-4  my-5">
