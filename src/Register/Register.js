@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {useHistory} from 'react-router-dom';
 import './Register.scss';
 import { registerSchema } from './register.schema';
+import { UserService } from '../services/user.service';
 
 export default function Register(props) {
 
@@ -10,13 +11,7 @@ export default function Register(props) {
 
     async function submit(values) {
         try {
-            const res = await fetch('http://localhost:4000/user', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(values)
-            });
+            const res = await UserService.create(values)
                 if(res.status === 201){
                     history.push('/login');
                     return;

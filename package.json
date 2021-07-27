@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@aws-sdk/client-s3": "^3.22.0",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -43,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^6.0.0"
+    "node-sass": "^6.0.0",
+    "prop-types": "^15.7.2"
   }
 }

@@ -1,41 +1,39 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {Formik, Form, Field} from 'formik';
 import Cookies from 'js-cookie';
 import { useHistory, Link } from 'react-router-dom';
 import intro from '../Assets/Images/intro.jpg';
 import {loginSchema} from './login.schema';
+import { UserService } from '../services/user.service';
+import { UserContext } from '../user-context';
 import './Login.scss'
+
 
 
 
 export default function Login() {
 
     const history = useHistory();
+    const { setUser }  = useContext(UserContext);
     const [showError, setShowError] = useState(false);
     
-    function submit(values){
+    async function submit(values){
         setShowError(false);
-        fetch('http://localhost:4000/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-        }).then(res=> {
-            if(res.status === 200) {
-                res.json()
-                    .then(json => {
-                       Cookies.set('nechavot-user', json.token, {expires: 30});
-                       history.push('/');
-                    });
-                return;
-            }
+
+        const res = await UserService.login(values);
+        if (res.status !== 200) {
             setShowError(true);
-        });
+            return;
+        }
+        const json = await res.json();
+        Cookies.set('nechavot-user', json.token, {expires: 30});  
+
+        const user = await UserService.me();
+        setUser(user);
+        history.push('/');
     }
-    
-    
+
     return (
         <div className="Login d-flex row justify-content-center">   
             <div className="col-lg-6 order-lg-1 my-lg-5">

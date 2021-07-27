@@ -21,4 +21,23 @@ export class UserService {
               return user;
             }
             
-    }
+    static create (values) {
+      return fetch('http://localhost:4000/user', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    });
+  }
+
+    static  login (values) {
+      return fetch('http://localhost:4000/user/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    });
+  }
+}
