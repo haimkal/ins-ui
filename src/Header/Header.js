@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Header(props) {
     return (
             <header className="Header">
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav className="navbar navbar-expand-lg ">
                     <div className="container header-container">
                         <Link to="/" className="nav-link d-md-none">
                             <FontAwesomeIcon icon={faHome}/>

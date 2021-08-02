@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 .Header { //phone
     bottom: 0;
     position: fixed;
     width: 100%;
     z-index: 2;
     order: 1;
+ 
+
 }
 
 @media screen and (min-width: 600px) { 
@@ -13,8 +17,20 @@
         order: 0;
     }
 }
+.navbar {
+    background: #fff;
 
+}
 .navbar-brand {   
-    font-size: 45px; 
-    font-family: "Cookie", cursive;
+    font-weight: 590; 
+    font-size: 55px !important;
+    font-family: "Dancing Script", cursive;
+    color: black;
+    padding: 0;
+    
+}
+
+.navbar-brand:hover {
+    color: rgb(253, 174, 187);
+    font-size: 55px;
 }

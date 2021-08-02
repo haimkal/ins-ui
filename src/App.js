@@ -44,7 +44,7 @@ function App() {
     <UserContext.Provider value={{user, setUser}}>
         <div className="App">
           { isLoggedIn() && <Header /> }
-          <div className="container">
+          <div className="container App-container">
            <Switch>
               <Route path="/login">
                 <Login />

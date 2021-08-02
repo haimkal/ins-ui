@@ -9,7 +9,7 @@ export default function HeaderAvatar() {
     return (
         <div className="HeaderAvatar"> 
             <Avatar size="md" image={user.avatar} />
-            <span className="d-none d-sm-block">{user.username}</span>
+            <span className="header-username d-none d-sm-block">{user.username}</span>
         </div>
     )
 }

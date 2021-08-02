@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { PostService } from '../services/post.service'
+import './Feed.scss'
 
 export default function Feed() {
 
@@ -8,7 +9,7 @@ export default function Feed() {
             .then(posts => console.log(posts));
     }, [])
     return (
-        <div>
+        <div className="feed">
             Feed!
         </div>
     )

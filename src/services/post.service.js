@@ -1,9 +1,9 @@
 import { UserService } from "./user.service";
-
+import environment from '../environments/index';
 export class PostService {
 
     static feed() {
-        return fetch('http://localhost:4000/post', {
+        return fetch(environment.apiUrl + '/post', {
             headers: {
                 Authorization: UserService.getToken()
             }
