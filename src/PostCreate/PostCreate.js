@@ -1,22 +1,36 @@
 import React from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {PostCreateSchema} from './post-create.schema';
+import { useHistory } from 'react-router-dom';
 import './PostCreate.scss';
 import environment from '../environments';
+import { UserService } from '../services/user.service';
+
 
 export default function PostCreate() {
 
-    function submit(values) {
+    const history = useHistory();
+
+    async function submit(values) {
         const data = new FormData();
         data.append('image', values.image);
         data.append('description', values.description);
         data.append('whereItIsNow', values.whereItIsNow);
         data.append('size', values.size);
 
-        fetch(environment.apiUrl + '/post', {
-            method: 'PUT',
-            body: data
-        });
+        try {
+            await fetch(environment.apiUrl + '/post', {
+                method: 'PUT',
+                body: data,
+                headers: { 
+                    Authorization: UserService.getToken()
+                }
+            });
+            history.push('/');
+        } catch (err) {
+            console.log(err);
+        }
+     
     }
     
     return (
@@ -27,7 +41,7 @@ export default function PostCreate() {
                     initialValues= {{image: '', description: '', whereItIsNow: '' }}
                     validationSchema = {PostCreateSchema}
                     onSubmit = {submit}>
-                    {({ setFieldValue })=> (
+                    {({ setFieldValue, isSubmitting })=> (
                         <Form className="PostCreate__form mt-5 col-lg-8 px-0" noValidate>
                             <div className="form-group my-3">
                                 <input type="file"
@@ -68,7 +82,11 @@ export default function PostCreate() {
                                 </Field>
                             </div>
                             <div className="from-group text-right my-3">
-                                <button type="submit" className="mt-3 PostCreate__submit-btn">Post</button>
+                                <button type="submit" 
+                                        className="mt-3 PostCreate__submit-btn" 
+                                        disabled = {isSubmitting}>
+                                        { isSubmitting ? 'Posting...' : 'Post'}
+                                </button>
                             </div>
                         </Form>
                     )}

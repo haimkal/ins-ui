@@ -9,4 +9,20 @@ export class PostService {
             }
         }).then(res => res.json());
     }
+
+    static async get(id) {
+        try {
+            const res = await fetch(environment.apiUrl + '/post/' + id, {
+                headers: {
+                    Authorization: UserService.getToken() 
+                }
+            });
+            const result = await res.json();
+            return result;
+        } catch(err) {
+            console.log(err);
+        }
+    }
+   
+
 }

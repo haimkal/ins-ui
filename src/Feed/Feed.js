@@ -1,16 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PostService } from '../services/post.service'
+import Post from '../common/Post/Post';
 import './Feed.scss'
 
 export default function Feed() {
 
+    const [posts, setPosts] = useState([]);
     useEffect (()=> {
-        PostService.feed()
-            .then(posts => console.log(posts));
-    }, [])
+        async function getPosts() {
+            setPosts(await PostService.feed());
+        } 
+        getPosts();
+    }, []);
+
     return (
-        <div className="feed">
-            Feed!
+        <div>
+            {posts.map(post => (
+                <Post key={post._id} data={post} />
+            ))}
         </div>
     )
 }

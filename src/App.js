@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Login from './Login/Login';
 import Feed from './Feed/Feed';
+import PostPage from './PostPage/PostPage';
 import { UserService } from './services/user.service';
 import { UserContext } from './user-context';
  
@@ -51,6 +52,9 @@ function App() {
               </Route>
               <Route path="/post/create">
                 <PostCreate/>
+              </Route>
+              <Route path="/post/:id">
+                <PostPage />
               </Route>
               <Route path="/Register">
                 <Register/>
