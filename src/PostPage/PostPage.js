@@ -1,41 +1,67 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { PostService } from '../services/post.service';
 import Avatar from '../common/Avatar/Avatar';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import './PostPage.scss';
 
-export default function PostPage() {
+export default function PostPage() { // checking dress.size and undefined
 
     const { id } = useParams();
     const [post, setPost] = useState(null);
+    // const history = useHistory();
+
     useEffect (()=> {
         async function getPost() {
-            setPost(await PostService.get(id));
+            try {
+                const post = await PostService.get(id);
+                if(post) {
+                    setPost(post);
+                } else {
+                    console.log('Post does not exist!');
+                    // history.push('/'); // check if it works well
+                }
+            } catch (err) {
+                console.log(err);
+            } 
         } 
         getPost();
     }, [id]);
 
     
+
+    
     return (
-        <>
-            { post && (
-            <div>
-                <div>
-                    <Avatar size="sm" image={post.user.avatar} />
-                    {post.user.username}
-                </div> 
-            <Moment fromNow>{post.createdAt}</Moment>
-            <div>{post.description}</div>
-            <div>{post.size}</div>
-            <div>{post.whereItIsNow}</div> 
-            <Link to= {'/post/' + post._id}>
-                <img src={post.image} />
-            </Link>
+    <div className= "PostPage">
+        { post && <div className="row">
+            <div className="col-md-2">
+                <header>
+                    <div className="PostPage__user">
+                        <Avatar size="md" image={post.user.avatar} />
+                        <h3 className="PostPage__user__username">{post.user.username}</h3>
+                    </div> 
+                </header> 
             </div>
-            )}
-        </>
+            <div className="col-md-8">
+                <Link to= {'/post/' + post._id}>
+                    <img className="PostPage__image" src={post.image} alt = "dress" />
+                </Link>
+                <div className="PostPage__details">
+                    <div className="PostPage__sizeAndTakenBy">
+                         { (post.size)  && <h4 className="PostPage__size">Dress size: {post.size} </h4>}
+                         <h4 className="PostPage__currtenlyTakenBy">Currtenly taken by: {post.whereItIsNow} </h4>
+                    </div>
+                    <div className="PostPage__content">
+                        <p className="PostPage__description">{post.description}</p> 
+                    </div>
+                    <div className="PostPage__date">
+                        <Moment fromNow className="PostPage__moment">{post.createdAt}</Moment>
+                    </div>
+                </div>
+            </div>
+        </div>}
+    </div>
     );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {PostCreateSchema} from './post-create.schema';
 import { useHistory } from 'react-router-dom';
@@ -10,6 +10,12 @@ import { UserService } from '../services/user.service';
 export default function PostCreate() {
 
     const history = useHistory();
+    const [imgPreview, setImgPreview] = useState('')
+    
+    function previewFile(file) {
+        if(!file) return;
+        setImgPreview(URL.createObjectURL(file));
+    }
 
     async function submit(values) {
         const data = new FormData();
@@ -36,20 +42,22 @@ export default function PostCreate() {
     return (
         <div className="d-flex row">
             <div className="col-lg-6 order-sm-0 order-lg-1 my-3">
-                <h2 className="PostCreate__title">Add a dress</h2>
+                <h2 className="PostCreate__title mx-4">Add a dress</h2>
                 <Formik
                     initialValues= {{image: '', description: '', whereItIsNow: '' }}
                     validationSchema = {PostCreateSchema}
                     onSubmit = {submit}>
                     {({ setFieldValue, isSubmitting })=> (
-                        <Form className="PostCreate__form mt-5 col-lg-8 px-0" noValidate>
+                        <Form className="PostCreate__form mt-5 mx-4 col-lg-10 px-0" noValidate>
                             <div className="form-group my-3">
                                 <input type="file"
                                         id="image" 
                                         name="image" 
                                         className="form-control"
-                                        onChange={(e)=> setFieldValue('image', e.target.files[0])}
-                                        
+                                        onChange={(e)=> { 
+                                            setFieldValue('image', e.target.files[0]);
+                                            previewFile(e.target.files[0]);
+                                        }}   
                                  />
                                 <ErrorMessage component="small" name="image" className="PostCreate__form__error" />
                             </div>
@@ -92,6 +100,9 @@ export default function PostCreate() {
                     )}
                     
                 </Formik>
+            </div>
+            <div className="previewContainer col-lg-6 order-sm-0 order-lg-1 my-0 ">
+                <img src={imgPreview} className="img-area"    />    
             </div>
         </div>
     )

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import '~bootstrap';
+
+.Post {
+ 
+  @include media-breakpoint-up(md){
+    height: 820px;
+  }
+    border: 1px solid #f1f1f1;
+    margin: 15px 0;
+    border-radius: 3px;
+
+    header{
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background: #f9f9f9;
+    }
+
+    .Post__date {
+      color: #888888;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+   .Post__image {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     overflow: hidden;
+   }
+
+    img {
+    transform: scale(1.1);
+     z-index: -1;
+  }
+  
+   
+  .Post__user {
+    // a {
+    //   color: #000;
+    //   text-decoration: none;
+    //   &:hover {
+    //     color: #f54555;
+    //   }
+    // }
+
+    &__username {
+      margin-left: 5px;
+    }
+  }
+
+  .Post__content {
+    padding: 0 15px;
+    
+    .Post__description {
+      color: #444444;
+      font-size: 30px; 
+      margin-top: 3px; 
+      margin-bottom: 5px;
+      @media (min-width: 768px) {
+        font-size: 32px;
+        line-height: 1.5em;
+        margin-top: 12px;
+        margin-bottom: 8px;
+      }
+      font-family: "Caveat", cursive;
+    }
+
+    .Post__CurrentlyTakenBy {
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+    
+  }
+
+  &:hover {
+    border-color: #dddddd;
+    .Post__image {
+      img {
+        transform: scale(1.2);
+        transition: all .2s ease-in;
+      }
+    }
+  }
+
+}
+
+

@@ -2,7 +2,7 @@
 
 $myPurple: #913c74; 
 .PostCreate {
-    
+   
   &__title {
     color: #333333;
   }
@@ -28,6 +28,27 @@ $myPurple: #913c74;
   // .submit-bth:hover {
   //   // background: lighten($myPurple, 26%) !important;   
   // }
+  }
+
+  .previewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ .previewContainer .img-area  {
+  height: 400px;
+
+  justify-content: center;
+  @include media-breakpoint-up(md){
+    height: 600px;
+    margin-top: 20px;
+  }
+  
+  
+    
+    
+  
 
  
 

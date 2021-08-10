@@ -11,7 +11,6 @@ export class PostService {
     }
 
     static async get(id) {
-        try {
             const res = await fetch(environment.apiUrl + '/post/' + id, {
                 headers: {
                     Authorization: UserService.getToken() 
@@ -19,9 +18,7 @@ export class PostService {
             });
             const result = await res.json();
             return result;
-        } catch(err) {
-            console.log(err);
-        }
+       
     }
    
 

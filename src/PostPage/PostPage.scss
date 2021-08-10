@@ -1,0 +1,43 @@
+.PostPage {
+    margin: 20px 0;
+
+    header {
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__image {
+        width: 100%;
+    }
+   
+    &__sizeAndTakenBy{
+        display: flex;
+        justify-content: space-between;
+    }
+
+  &__date {
+    color: #888888;
+    font-size: 12px;
+  }
+
+  &__content {
+    margin-top: 10px;
+  }
+
+  
+  &__user {
+
+    // a {
+    //   text-decoration: none;
+    // }
+
+    &__username {
+      color: #000;
+      font-size: 18px;
+      margin: 6px 4px;
+      &:hover {
+        color: #fc8dbd;
+      }
+    }
+  }
+
+}
