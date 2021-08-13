@@ -24,7 +24,7 @@ function App() {
   useEffect(()=> {
     async function getMe() {
       try{  
-            const user = await UserService.me()
+            const user = await UserService.me();
             if(!user){
               history.push('/login');
               return;

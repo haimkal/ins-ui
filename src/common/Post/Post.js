@@ -11,7 +11,7 @@ export default function Post({ data }) {
         <article className="Post">
                 <header>
                     <div className="Post__user">
-                        <Avatar size="md" image={data.user.avatar} />
+                        <Avatar className="Post__user__avatar" size="sm" image={data.user.avatar} />
                         <h3 className="Post__user__username">{data.user.username}</h3>
                     </div>
                     <div className="Post__date">

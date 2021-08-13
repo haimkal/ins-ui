@@ -38,6 +38,7 @@
   
    
   .Post__user {
+    
     // a {
     //   color: #000;
     //   text-decoration: none;
@@ -45,9 +46,13 @@
     //     color: #f54555;
     //   }
     // }
-
+    .Avatar {
+      margin-left: 6px;
+      margin-bottom: 5px;
+    }
     &__username {
       margin-left: 5px;
+      font-size: 15px ;
     }
   }
 

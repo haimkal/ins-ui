@@ -10,7 +10,7 @@ export default function Avatar(props) {
     const className = 'Avatar--' + size;
     
     return (
-        <img src={image} alt="avatar" className={"Avatar " + className}  />   
+        <img src={image} alt="avatar" className= {"Avatar " + className}  />   
     );
 }
 
