@@ -31,7 +31,7 @@ export class UserService {
     });
   }
 
-    static  login (values) {
+    static login (values) {
       return fetch(environment.apiUrl + '/user/login', {
         method: 'POST',
         headers: {
@@ -40,4 +40,45 @@ export class UserService {
         body: JSON.stringify(values)
     });
   }
+
+  static async getPosts(username) {
+        
+        const res = await fetch(environment.apiUrl + '/user/' + username + '/posts', {     
+          headers: {
+            Authorization: UserService.getToken()
+          },
+      });
+        const posts = await res.json();
+        return posts;
+  }
+
+  static async getUser(username) {
+        
+    const res = await fetch(environment.apiUrl + '/user/' + username, {     
+      headers: {
+        Authorization: UserService.getToken()
+      },
+  });
+    const user = await res.json();
+    return user;
+}
+
+  static async editUser (values, userId) {
+    const data = new FormData();
+    if(values.image) {
+      data.append('image', values.image);
+    }
+    data.append('username', values.username);
+    data.append('email', values.email);
+    console.log(data);
+    const res = fetch(environment.apiUrl + `/user/edit/${userId}`, {
+      method: 'POST',
+      headers: {
+        Authorization: UserService.getToken()
+      },
+      body: data
+    });
+    return res;
+  }
+   
 }

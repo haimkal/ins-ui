@@ -1,0 +1,56 @@
+@import 'bootstrap';
+
+$myPurple: #913c74; 
+.EditProfile {
+   
+  &__title {
+    color: #333333;
+  }
+
+
+  &__form__error {
+    @extend .text-danger;
+    margin-left: 14px;
+  }
+
+  &__submit-btn,
+  &__submit-btn:active,
+  &__submit-btn:focus {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .w-100;
+    background: $myPurple;
+    border-color: #550032;
+    color: #fff;
+   
+  }
+
+  // .submit-bth:hover {
+  //   // background: lighten($myPurple, 26%) !important;   
+  // }
+  }
+
+//   .previewContainer {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+
+//  .previewContainer .img-area  {
+//   height: 400px;
+
+//   justify-content: center;
+//   @include media-breakpoint-up(md){
+//     height: 600px;
+//     margin-top: 20px;
+//   }
+  
+  
+    
+    
+  
+
+ 
+
+
+// }

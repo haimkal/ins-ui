@@ -1,21 +1,16 @@
 import * as yup from 'yup';
 import environment from '../environments/index';
 
-export const registerSchema = yup.object().shape({
+export const userEditSchema = yup.object().shape({
+    image: yup.mixed(),
     username: yup.string()
         .min(3, 'Username is too short')
         .max(20, 'Username is too long')
-        .required('Username is required')
         .test('isUnique', 'Username is already taken', (value)=> isUnique('username', value)),
-    password: yup.string()
-        .min(6, 'Password is too short')
-        .max(20, 'Password is too long')
-        .required('Password is required'),
+    
     email: yup.string()
         .email('Email is invalid')
-        .required('Email is required')
-        .test('isUnique', 'Email is already in use', (value)=> isUnique('email', value)),
-   agreeToTerms: yup.mixed().oneOf([true], 'You must agree to terms')
+        .test('isUnique', 'Email is already in use', (value)=> isUnique('email', value))
   });
 
   const memo = {
@@ -28,7 +23,7 @@ export const registerSchema = yup.object().shape({
     if (memo[field].hasOwnProperty(value)) {
         return memo[field][value];
     }
-    fetch(environment.apiUrl+`/user/check?${field}=${value}`)
+    fetch(environment.apiUrl+`/user/edit/check?${field}=${value}`)
         .then(res => res.json())
         .then(res => {
             memo[field][value] = !res;

@@ -2,6 +2,7 @@ import './App.scss';
 import { useEffect, useState } from 'react';
 import Header from './Header/Header';
 import Register from './Register/Register';
+import Profile from './Profile/Profile';
 import PostCreate from './PostCreate/PostCreate';
 import {
   Switch,
@@ -11,6 +12,7 @@ import {
 import Login from './Login/Login';
 import Feed from './Feed/Feed';
 import PostPage from './PostPage/PostPage';
+import EditProfile from './EditProfile/EditProfile'; 
 import { UserService } from './services/user.service';
 import { UserContext } from './user-context';
  
@@ -50,11 +52,17 @@ function App() {
               <Route path="/login">
                 <Login />
               </Route>
+              <Route path="/user/edit">
+                <EditProfile />
+              </Route>
               <Route path="/post/create">
                 <PostCreate/>
               </Route>
               <Route path="/post/:id">
                 <PostPage />
+              </Route>
+              <Route path="/profile/:username">
+                <Profile />
               </Route>
               <Route path="/Register">
                 <Register/>
