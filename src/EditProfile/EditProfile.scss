@@ -2,39 +2,88 @@
 
 $myPurple: #913c74; 
 .EditProfile {
+
+
+    &__title {
+      color: #333333;
+    }
+
+    &__form {
+      overflow: scroll;
+    }
+
+    &__form__error {
+      @extend .text-danger;
+      margin-left: 14px;
+    }
+
+    &__submit-btn,
+    &__submit-btn:active,
+    &__submit-btn:focus {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .w-100;
+      background: $myPurple;
+      border-color: #550032;
+      color: #fff;
+    
+    }
+  
+} 
+
+
+
+.previewContainer {
+  width: 300px;
+  height: 400px;
+  margin-left: 20px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  
+  @include media-breakpoint-up(md){
+    height: 600px;
+    width: 500px;
+    margin-left: 40px;
+  }
+}
+
+
+  .imgAvatar{
+    height: 400px;
+    margin: 5px 0;
+    
    
-  &__title {
-    color: #333333;
+    @include media-breakpoint-up(md){
+      height: 600px;
+      margin-left: 40px;
+    }
+
+    
   }
 
 
-  &__form__error {
-    @extend .text-danger;
-    margin-left: 14px;
-  }
 
-  &__submit-btn,
-  &__submit-btn:active,
-  &__submit-btn:focus {
-    @extend .btn;
-    @extend .btn-primary;
-    @extend .w-100;
-    background: $myPurple;
-    border-color: #550032;
-    color: #fff;
-   
-  }
 
+// @media only screen and (min-width: 900px) {
+//   .ProfileEdit {
+//       margin:auto;
+// //       width: 50%
+//   }
+// }
   // .submit-bth:hover {
   //   // background: lighten($myPurple, 26%) !important;   
   // }
-  }
+  
 
-//   .previewContainer {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
+  // .previewContainer {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
 
 //  .previewContainer .img-area  {
 //   height: 400px;

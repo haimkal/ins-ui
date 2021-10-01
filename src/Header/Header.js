@@ -3,6 +3,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import HeaderAvatar from './HeaderAvatar/HeaderAvatar';
 import { Link } from 'react-router-dom'; 
 import Menu from './Menu/Menu';
+import { UserContext } from '../user-context'
 import './Header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -18,7 +19,9 @@ export default function Header(props) {
                             <a className="navbar-brand d-none d-md-block" href="/">Nechavot Style </a>
                             <Menu />
                             <div className="nav ml-auto mx-3">
-                                 <HeaderAvatar />
+                                
+                                    <HeaderAvatar />
+                                
                             </div> 
                      </div>
                 </nav>
