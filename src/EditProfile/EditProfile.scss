@@ -52,19 +52,19 @@ $myPurple: #913c74;
 }
 
 
-  .imgAvatar{
-    height: 400px;
-    margin: 5px 0;
-    
-   
-    @include media-breakpoint-up(md){
-      height: 600px;
-      margin-left: 40px;
-    }
+  // .ReactCrop{
 
+  //     &__image {
+  //       display: block;
+  //       max-width: 100%;  
     
-  }
-
+  //     @include media-breakpoint-up(md){
+  //       height: 500px !important;
+      
+  //     }
+  //   }
+    
+  // }
 
 
 

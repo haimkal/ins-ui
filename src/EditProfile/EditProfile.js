@@ -1,39 +1,60 @@
-import React, { useState, useContext, useMemo } from 'react';
+import React, { useState, useRef, useContext, useMemo } from 'react';
 import { ErrorMessage, Field, Formik, Form } from 'formik';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import { userEditSchema } from './EditProfile.schema';
 import Avatar from '../common/Avatar/Avatar';
 import { UserContext } from '../user-context';
 import { UserService } from '../services/user.service';
 import { useHistory } from 'react-router';
+import { getCroppedImg } from './imageCropper';
 import './EditProfile.scss';
 
 
 export default function EditProfile() {
 
     const history = useHistory()
-    const [imgPreview, setImgPreview] = useState('');
+    const [imgPreview, setImgPreview] = useState(null);
     const { user, setUser } = useContext(UserContext);
+    const [crop, setCrop] = useState({   
+        unit: '%',
+        width: 40,
+        aspect: 1 / 1
+    });
+    const [image, setImage] = useState(null);
+    
+    const [result, setResult] = useState(null);
     const [isChosenFile, setIsChosenFile] = useState(false);
+    
     
      
     function previewFile(file) {
         if(!file) return;
         setImgPreview(URL.createObjectURL(file));
+       
     }
 
+
     async function submit(values) {
+        console.log(user._id);
+        const imageFile = await getCroppedImg(image, crop, 'croppedImg.jpg');
+      
+       console.log({imageFile});
+        values.image = imageFile;
         try {
+           
             setUser(values);
             const newUser = await UserService.editUser(values, user._id)
             console.log(newUser);
             setUser(newUser)
-            history.push(`/profile/${user.username}`)
+            history.push(`/`)
         } catch (err) {
             console.log(err);
         }
        
     }
-    
+   
+
 
 
     return (
@@ -43,7 +64,8 @@ export default function EditProfile() {
                     <div className="form-container m-4 d-felx flex-column">
                         {isChosenFile ?
                         <div className="previewContainer  ">
-                            <img src={imgPreview} className="imgAvatar"    />    
+                              
+                            <ReactCrop onImageLoaded={setImage} src={imgPreview} crop={crop} onChange={newCrop => setCrop(newCrop)} />
                         </div> :
                         <div className="postEdit-avatar d-flex justify-content-center"> <Avatar size="lg" image={user.avatar} /> </div> }
                         <Formik
@@ -58,13 +80,15 @@ export default function EditProfile() {
                                                 name="image" 
                                                 className="form-control"
                                                 accept="image/*"
+                                                
                                                 onChange={(e)=> {
                                                     if(e.target.files.length === 0) return; 
-                                                    setFieldValue('image', e.target.files[0]);
+                                                    previewFile(e.target.files[0]);
+                                                    // setFieldValue('image', e.target.files[0]);
                                                     // setChanged(true);
                                                     // setChosenFile(URL.createObjectURL(e.target.files[0]));
                                                     setIsChosenFile(true);
-                                                    previewFile(e.target.files[0]);
+                                                    console.log(e.target.files[0]);
                                                     
                                                 }}   
                                         />
