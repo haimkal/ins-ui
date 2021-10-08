@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
+
+.editContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+
+    @media screen and (min-width: 600px) { 
+        width: 15%
+    }
+    .text {
+        font-family: "Birthstone", cursive;
+        font-size: 30px;
+    }
+    .pencilEdit {
+        color: #000;
+        &:hover {
+            color: #0A58CA;    
+        }
+    }
+}
+
+.email {
+margin-top: 10px;
+}
+
+
+
+

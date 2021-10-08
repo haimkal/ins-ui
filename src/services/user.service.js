@@ -54,7 +54,7 @@ export class UserService {
 
   static async getUser(username) {
         
-    const res = await fetch(environment.apiUrl + '/user/' + username, {     
+    const res = await fetch(environment.apiUrl + `/user/${username}`, {     
       headers: {
         Authorization: UserService.getToken()
       },
@@ -71,14 +71,14 @@ export class UserService {
     data.append('username', values.username);
     data.append('email', values.email);
     console.log(data);
-    const res = fetch(environment.apiUrl + `/user/edit/${userId}`, {
+    const res = await fetch(environment.apiUrl + `/user/edit/${userId}`, {
       method: 'POST',
       headers: {
         Authorization: UserService.getToken()
       },
       body: data
     });
-    return res;
+    return res.json();
   }
    
 }

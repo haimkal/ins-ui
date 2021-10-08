@@ -9,7 +9,7 @@ export default function HeaderAvatar() {
     const { user } = useContext(UserContext);
     return (
         <div className="HeaderAvatar"> 
-            <Link to = {'/profile/' + user.username} >
+            <Link to = {`/profile/${user.username}`} >
                 <Avatar size="md" image={user.avatar} />
                 <span className="HeaderAvatar__username mx-2 d-none d-sm-block">{user.username}</span>
             </Link>  

@@ -43,11 +43,12 @@ export default function EditProfile() {
         values.image = imageFile;
         try {
            
-            setUser(values);
+            // setUser(values);
             const newUser = await UserService.editUser(values, user._id)
-            console.log(newUser);
-            setUser(newUser)
-            history.push(`/`)
+            history.push(`/profile/${newUser.username}`);
+            setUser(newUser);
+            console.log(user);
+           
         } catch (err) {
             console.log(err);
         }
@@ -96,7 +97,7 @@ export default function EditProfile() {
                                     </div>
                                     <div className="form-group my-3">
                                         <label className="form-label" htmlFor="username">Username</label>
-                                        <Field as="input" className="form-control" name="username" id="username" />
+                                        <Field as="input" className="form-control" name="username" id="username" placeholder={user.username} />
                                         <ErrorMessage component="small" name="username" className="EditProfile__form__error" />
                                     </div>
                                     <div className="form-group my-3">
