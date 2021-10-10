@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import './Post.scss';
 
 export default function Post({ data }) {
-
+    
     return (
     <div className= "col-12 col-md-4 ">
         <article className="Post">

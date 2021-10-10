@@ -1,16 +1,29 @@
-import React, { useState }from 'react'
+import React, { useEffect, useState }from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {PostCreateSchema} from './post-create.schema';
 import { useHistory } from 'react-router-dom';
 import './PostCreate.scss';
 import environment from '../environments';
 import { UserService } from '../services/user.service';
+import { set } from 'js-cookie';
 
 
 export default function PostCreate() {
 
     const history = useHistory();
     const [imgPreview, setImgPreview] = useState('')
+    const [myUsernames, setUsernames] = useState([]);
+
+    useEffect(() => {
+        async function getAllUsers() {
+                const usernames = await UserService.getAllUsers();
+                console.log(usernames)
+                setUsernames([...usernames]);
+        }
+        getAllUsers();
+    }, [])
+      
+    
     
     function previewFile(file) {
         if(!file) return;
@@ -68,19 +81,21 @@ export default function PostCreate() {
                             </div>
                             <div class="form-group my-3">
                                 <label className="form-label" htmlFor="whereItIsNow" >Where it is now</label>
-                                <Field as="select" className="form-control" name="whereItIsNow" id="whereItIsNow">
-                                    <option value="Ariel">Ariel</option>
-                                    <option value="Julie">Julie</option>
-                                    <option value="Almog">Almog</option>
-                                    <option value="Gilor">Gilor</option>
-                                    <option value="Racheli">Racheli</option>
-                                    <option value="Bar">Bar</option>
+                                <Field as="select"  className="form-control" name="whereItIsNow" id="whereItIsNow">
+                                    <option key="empty" value="">Select who currently took the dress</option>
+                                    {myUsernames.map((username, index) => (
+                                        <option key={index} value={username} data={username}>
+                                            {username}
+                                        </option>
+                                    ))} 
+                                                             
                                 </Field>
                                 <ErrorMessage component="small" name="whereItIsNow" className="PostCreate__form__error" />
                             </div>
                             <div className="form-group my-3">
                                 <label className="form-label" htmlFor="size">Size</label>
                                 <Field as="select" className="form-control" name="size" id="size">
+                                    <option key="empty" value="">Select dress size</option>
                                     <option value="OS">OS</option>
                                     <option value="XS">XS</option>
                                     <option value="S">S</option>
@@ -88,6 +103,7 @@ export default function PostCreate() {
                                     <option value="L">L</option>
                                     <option value="XL">XL</option>
                                 </Field>
+                                <ErrorMessage component="small" name="size" className="PostCreate__form__error" />
                             </div>
                             <div className="from-group text-right my-3">
                                 <button type="submit" 

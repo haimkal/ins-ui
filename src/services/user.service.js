@@ -80,5 +80,18 @@ export class UserService {
     });
     return res.json();
   }
-   
+
+  static async getAllUsers() {
+    const res = await fetch(environment.apiUrl + '/users', {     
+      headers: {
+        Authorization: UserService.getToken()
+      },
+  });
+    const users = await res.json();
+    const newUsers = users.map(user=> (
+      user.username
+    ))
+    console.log(newUsers)
+    return newUsers;
+  } 
 }

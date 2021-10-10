@@ -6,5 +6,7 @@ export const PostCreateSchema = yup.object().shape({
     description: yup.string()
         .max(2000, 'Description is too long'),
     whereItIsNow: yup.string()
-        .required('You have to fill up where the dress is')    
+        .required('You have to fill up where the dress is'),
+    size: yup.string()
+        .required('You have to fill dress size'),  
 })
