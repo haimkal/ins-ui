@@ -20,6 +20,20 @@ export class PostService {
             return result;
        
     }
-   
 
+   
+    static async takenByMe(id, myUsername){
+        const res = await fetch(environment.apiUrl + `/post/taken/${id}/${myUsername}`, {
+            // method: 'POST',
+            headers: {
+                Authorization: UserService.getToken()
+            },
+            
+            
+        });
+        
+        const result = await res.json();
+        console.log(result);
+        return result;
+    }
 }

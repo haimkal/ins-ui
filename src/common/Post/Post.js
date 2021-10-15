@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
@@ -27,6 +27,7 @@ export default function Post({ data }) {
                         <p className="Post__description">{data.description}</p>
                         <div className="Post__CurrentlyTakenBy">Currently taken by:<strong> {data.whereItIsNow}</strong></div> 
                 </div>
+               
         </article>
     </div>
     )
