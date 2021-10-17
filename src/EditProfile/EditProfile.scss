@@ -7,11 +7,7 @@ $myPurple: #913c74;
     &__title {
       color: #333333;
     }
-
-    &__form {
-      overflow: scroll;
-    }
-
+    
     &__form__error {
       @extend .text-danger;
       margin-left: 14px;

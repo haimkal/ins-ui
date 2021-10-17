@@ -10,19 +10,18 @@ import './PostPage.scss';
 
 export default function PostPage() { // checking dress.size and undefined
     
+    const history = useHistory()
     const { id } = useParams();
     const [post, setPost] = useState(null);
     const [takenByMe, setTakenByMe] = useState(false);
     const { user }  = useContext(UserContext);
-    // const history = useHistory();
 
     async function handleClick() {
         console.log('I took the dress!');
+        setTakenByMe(true);
         const myUsername = user.username;
-        
         const updatedPost = await PostService.takenByMe(id, myUsername);
-
-        
+        history.push(`/`);
     }
 
     useEffect (()=> {
@@ -51,30 +50,30 @@ export default function PostPage() { // checking dress.size and undefined
             <div className="col-md-2">
                 <header>
                     <div className="PostPage__user">
-                        <Avatar size="md" image={post.user.avatar} />
-                        <h3 className="PostPage__user__username">{post.user.username}</h3>
+                        <Avatar className = "Avatar" size="md" image={post.user.avatar} />
+                        <div className="PostPage__username">{post.user.username}</div>
                     </div> 
                 </header> 
             </div>
             <div className="col-md-8">
+                <div className="PostPage__date">
+                    <Moment fromNow className="PostPage__moment">{post.createdAt}</Moment>
+                </div>
                 <Link to= {'/post/' + post._id}>
                     <img className="PostPage__image" src={post.image} alt = "dress" />
                 </Link>
                 <div className="PostPage__details">
                     <div className="PostPage__sizeAndTakenBy">
-                         { (post.size)  && <h4 className="PostPage__size">Dress size: {post.size} </h4>}
-                         <h4 className="PostPage__currtenlyTakenBy">Currtenly taken by: {post.whereItIsNow} </h4>
+                         { (post.size)  && <div className="PostPage__size">Dress size: {post.size} </div>}
+                         <div className="PostPage__curretnlyTakenBy">Currently taken by: {post.whereItIsNow} </div>
                     </div>
                     <div className="PostPage__content">
                         <p className="PostPage__description">{post.description}</p> 
                     </div>
-                    <div className="PostPage__date">
-                        <Moment fromNow className="PostPage__moment">{post.createdAt}</Moment>
-                    </div>
                 </div>
             </div>
-            <div className="col-md-2">
-                <button className= {takenByMe ? "takenByMe active" : "takenByMe"} onClick = {handleClick}>
+            <div className="btn-container col-md-2">
+                <button className= {takenByMe ? "btn active" : "btn"} onClick = {handleClick}>
                         I took that dress !
                 </button>
             </div>
