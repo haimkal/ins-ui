@@ -11,27 +11,26 @@ export class PostService {
     }
 
     static async get(id) {
-            const res = await fetch(environment.apiUrl + '/post/' + id, {
-                headers: {
-                    Authorization: UserService.getToken() 
-                }
-            });
-            const result = await res.json();
-            return result;
-       
+        const res = await fetch(environment.apiUrl + '/post/' + id, {
+            headers: {
+                Authorization: UserService.getToken()
+            }
+        });
+        const result = await res.json();
+        return result;
     }
 
-   
-    static async takenByMe(id, myUsername){
+
+    static async takenByMe(id, myUsername) {
         const res = await fetch(environment.apiUrl + `/post/taken/${id}/${myUsername}`, {
             // method: 'POST',
             headers: {
                 Authorization: UserService.getToken()
             },
-            
-            
+
+
         });
-        
+
         const result = await res.json();
         console.log(result);
         return result;
