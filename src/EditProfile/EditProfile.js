@@ -65,7 +65,6 @@ export default function EditProfile() {
                 <div className="form-container m-4 d-felx flex-column">
                     {isChosenFile ?
                         <div className="previewContainer  ">
-
                             <ReactCrop onImageLoaded={setImage} src={imgPreview} crop={crop} onChange={newCrop => setCrop(newCrop)} />
                         </div> :
                         <div className="postEdit-avatar d-flex justify-content-center"> <Avatar size="lg" image={user.avatar} /> </div>}

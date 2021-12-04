@@ -1,3 +1,3 @@
 export const production = {
-    apiUrl: 'https://shielded-everglades-93333.herokuapp.com'
+    apiUrl: 'https://blooming-mesa-13173.herokuapp.com'
 };
