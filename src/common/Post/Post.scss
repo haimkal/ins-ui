@@ -34,19 +34,12 @@
 
     img {
     transform: scale(1.1);
+    image-orientation: from-image;
      z-index: -1;
   }
   
    
   .Post__user {
-    
-    // a {
-    //   color: #000;
-    //   text-decoration: none;
-    //   &:hover {
-    //     color: #f54555;
-    //   }
-    // }
     .Avatar {
       margin-left: 6px;
       margin-bottom: 5px;

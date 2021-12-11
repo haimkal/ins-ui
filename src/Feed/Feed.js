@@ -6,15 +6,15 @@ import './Feed.scss'
 export default function Feed() {
 
     const [posts, setPosts] = useState([]);
-    useEffect (()=> {
+    useEffect(() => {
         async function getPosts() {
             setPosts(await PostService.feed());
-        } 
+        }
         getPosts();
     }, []);
 
     return (
-        <div className="row">
+        <div className="feed row">
             {posts.map(post => (
                 <Post key={post._id} data={post} />
             ))}
