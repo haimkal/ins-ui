@@ -13,7 +13,7 @@ import { set } from 'js-cookie';
 export default function PostCreate() {
 
     const history = useHistory();
-    const [imgPreview, setImgPreview] = useState('')
+    const [imgPreview, setImgPreview] = useState(null)
     const [myUsernames, setUsernames] = useState([]);
     const [crop, setCrop] = useState({
         unit: '%',
@@ -81,6 +81,7 @@ export default function PostCreate() {
                                     id="image"
                                     name="image"
                                     className="form-control"
+                                    accept="image/*"
                                     onChange={(e) => {
                                         setFieldValue('image', e.target.files[0]);
                                         setIsChosenFile(true);
