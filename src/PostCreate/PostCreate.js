@@ -71,7 +71,7 @@ export default function PostCreate() {
             <div className="col-lg-6 order-sm-0 order-lg-1 my-3">
                 <h2 className="PostCreate__title mx-4">Add a dress</h2>
                 <Formik
-                    initialValues={{ image: '', description: '', whereItIsNow: '' }}
+                    initialValues={{ image: '', description: '', whereItIsNow: '', size: '' }}
                     validationSchema={PostCreateSchema}
                     onSubmit={submit}>
                     {({ setFieldValue, isSubmitting }) => (
@@ -84,7 +84,7 @@ export default function PostCreate() {
                                     accept="image/*"
                                     onChange={(e) => {
                                         setFieldValue('image', e.target.files[0]);
-                                        setIsChosenFile(true);
+                                        // setIsChosenFile(true);
                                         previewFile(e.target.files[0]);
                                     }}
                                 />
