@@ -1,5 +1,13 @@
 @import 'bootstrap';
 
+.PostCreate {
+    position: relative;
+    padding-bottom: 100px;
+    @media screen and (min-width: 600px){
+      padding-bottom: 0;
+    }
+}
+
 $myPurple: #913c74; 
 .PostCreate {
    
@@ -32,25 +40,7 @@ $myPurple: #913c74;
 
   .previewContainer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
   }
-
- .previewContainer .img-area  {
-  height: 500px;
-
-  justify-content: center;
-  @include media-breakpoint-up(md){
-    height: 600px;
-    margin-top: 20px;
-  }
-  
-  
-    
-    
-  
-
- 
-
-
-}

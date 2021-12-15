@@ -59,7 +59,7 @@ export default function EditProfile() {
 
 
     return (
-        <div className="ProfileEdit d-flex column">
+        <div className="EditProfile d-flex column">
             <div className="col-lg-6 order-sm-0 order-lg-1 my-3">
                 <h2 className="EditProfile__title mx-4">Edit Profile</h2>
                 <div className="form-container m-4 d-felx flex-column">
@@ -70,7 +70,7 @@ export default function EditProfile() {
                         <div className="postEdit-avatar d-flex justify-content-center"> <Avatar size="lg" image={user.avatar} /> </div>}
                     <Formik
                         initialValues={{ username: '', email: '', image: '' }}
-                        validationSchema={userEditSchema}
+                        // validationSchema={userEditSchema}
                         onSubmit={submit}>
                         {({ setFieldValue, isSubmitting }) => (
                             <Form className="EditProfile__form mx-4 col-lg-10 px-0" noValidate>

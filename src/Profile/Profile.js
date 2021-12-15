@@ -28,7 +28,7 @@ export default function Profile() {
         <div>
             <ProfileHeader username = {username} postsNum = {posts.length}/>
             <hr />
-            <div className="row">
+            <div className="profile row">
                 {posts.map(post => (
                     <Post key={post._id} data={post} />
                 ))}
