@@ -27,12 +27,20 @@ export class PostService {
             headers: {
                 Authorization: UserService.getToken()
             },
-
-
         });
-
         const result = await res.json();
         console.log(result);
         return result;
+    }
+
+    static async deletePost(postId) {
+        console.log(postId)
+        const res = await fetch(environment.apiUrl + `/post/${postId}/delete-post`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: UserService.getToken()
+            }
+        })
+        return res.json();
     }
 }

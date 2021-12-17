@@ -84,7 +84,17 @@
       }
     }
   }
-
+  .deletePostButton {
+    display: none;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #ce0056;
+  }
+  
 }
-
+.Post:hover {
+  .deletePostButton {
+    display: block;
+  }
+}
 
