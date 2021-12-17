@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router';
 import { UserContext } from '../../user-context';
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
@@ -7,18 +8,16 @@ import './Post.scss';
 import { PostService } from '../../services/post.service';
 
 export default function Post({ data }) {
+    const history = useHistory();
     const { user } = useContext(UserContext)
-    const [deleted, setDeleted] = useState(false);
-
 
     async function deletePost() {
-        setDeleted(true)
+        history.push(`/profile/${user.username}`); 
         return await PostService.deletePost(data._id);
     }
     return (
 
         <div className="col-12 col-md-4 ">
-            {!deleted &&
                 <article className="Post">
                     <header>
                         <div className="Post__user">
@@ -42,7 +41,6 @@ export default function Post({ data }) {
                         {data.user._id === user._id && <button className="deletePostButton" onClick={deletePost}> X </button>}
                     </div>
                 </article>
-            }
         </div>
 
     )
